@@ -1,24 +1,41 @@
-// 1. Select our elements (The "Selectors")
+// 1. Select our elements
 const todoToggle = document.getElementById('todo-toggle');
 const taskTitle = document.getElementById('task-title');
 const statusBar = document.querySelector('.status-bar');
 const timeRemainingDisplay = document.getElementById('time-remaining');
+const dueDateElement = document.querySelector('[data-testid="test-todo-due-date"]');
 const editBtn = document.querySelector('[data-testid="test-todo-edit-button"]');
 const deleteBtn = document.querySelector('[data-testid="test-todo-delete-button"]');
 
-// 2. Set a Fixed Due Date (For testing)
-// Let's set it to tomorrow at 6:00 PM
+// 2. Set a Dynamic Due Date (Exactly 24 hours from "Now")
 const dueDate = new Date();
-dueDate.setDate(dueDate.getDate() + 1); 
-dueDate.setHours(18, 0, 0);
+dueDate.setHours(dueDate.getHours() + 24); 
 
 
- // 3. Time Logic Function
- // Calculates difference between now and the due date
+// 3. Update the UI with the Correct Date, Time & Countdown
  
-function updateTimeRemaining() {
+function updateDisplay() {
     const now = new Date();
     const diffInMs = dueDate - now;
+    
+    // --- Update the Due Date with TIME (e.g., Due Apr 12, 2026, 1:00 PM) ---
+    const dateOptions = { 
+        month: 'short', 
+        day: 'numeric', 
+        year: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true 
+    };
+    
+    // Format the date and time beautifully
+    const formattedDateTime = dueDate.toLocaleString('en-US', dateOptions);
+    dueDateElement.innerText = `Due ${formattedDateTime}`;
+    
+    // Semantic datetime attribute for machines
+    dueDateElement.setAttribute('datetime', dueDate.toISOString());
+
+    // --- Update the "Time Remaining" logic ---
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
     const diffInDays = Math.floor(diffInHours / 24);
 
@@ -29,45 +46,40 @@ function updateTimeRemaining() {
     } else if (diffInHours < 1) {
         timeText = "Due now!";
     } else if (diffInHours < 24) {
-        timeText = "Due tomorrow";
+        const hoursLeft = Math.max(1, diffInHours);
+        // Pluralization for hours
+        timeText = `Due in ${hoursLeft} ${hoursLeft === 1 ? 'hour' : 'hours'}`;
     } else {
-        timeText = `Due in ${diffInDays} days`;
+        // Pluralization for days
+        timeText = `Due in ${diffInDays} ${diffInDays === 1 ? 'day' : 'days'}`;
     }
 
     timeRemainingDisplay.innerText = timeText;
+    
 }
 
-
- // 4. Toggle Completion Logic
+// 4. Toggle Completion Logic
 
 todoToggle.addEventListener('change', () => {
     if (todoToggle.checked) {
         taskTitle.classList.add('completed-text');
         statusBar.innerText = "Done";
-        statusBar.style.background = "#55efc4"; // Change to green
+        statusBar.style.background = "#55efc4"; 
     } else {
         taskTitle.classList.remove('completed-text');
         statusBar.innerText = "Pending";
-        statusBar.style.background = "#6c5ce7"; // Back to purple
+        statusBar.style.background = "#6c5ce7"; 
     }
 });
 
 
- // 5. Button Actions (Dummy listeners for the task)
-
-editBtn.addEventListener('click', () => {
-    console.log("Edit clicked");
-    alert("Edit mode activated!");
-});
-
+// 5. Button Actions
+ 
+editBtn.addEventListener('click', () => alert("Edit mode activated!"));
 deleteBtn.addEventListener('click', () => {
-    console.log("Delete clicked");
-    if(confirm("Are you sure you want to delete this task?")) {
-        document.querySelector('.todo-card').style.opacity = "0.5";
-    }
+    if(confirm("Are you sure?")) document.querySelector('.todo-card').style.opacity = "0.5";
 });
 
-// 6. Initialize the timer
-updateTimeRemaining();
-// Optional: Update every minute
-setInterval(updateTimeRemaining, 60000);
+// 6. Initialize and start the interval
+updateDisplay();
+setInterval(updateDisplay, 60000);
