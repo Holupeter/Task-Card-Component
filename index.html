@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Manager | Stage 0</title>
+    <title>Task Card component | Stage 0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,15 +28,15 @@
                 
                 <ul class="tag-list" data-testid="test-todo-tags" role="list">
                     <li data-testid="test-todo-tag-work">Work</li>
-                    <li data-testid="test-todo-tag-urgent">Tech</li>
+                    <li data-testid="test-todo-tag-urgent">Urgent</li>
                 </ul>
             </div>
 
             <footer class="card-footer">
                 <div class="date-info">
-                    <time datetime="2026-03-01" data-testid="test-todo-due-date">Due Mar 1, 2026</time>
+                    <time datetime="" data-testid="test-todo-due-date">Loading date...</time>
                     <time id="time-remaining" data-testid="test-todo-time-remaining" aria-live="polite">
-                        Due in 3 days
+                        Calculating time...
                     </time>
                 </div>
                 
