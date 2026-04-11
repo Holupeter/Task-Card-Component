@@ -3,7 +3,7 @@
 A clean, modern, and highly accessible Todo Item Card built with **Vanilla HTML5, CSS3, and JavaScript**. This project focuses on semantic structure, automated testability, and a human-centric design aesthetic.
 
 ## 🚀 Live Demo
-[Insert Your Vercel/Netlify URL Here]
+[Live Link](https://task-card-component.vercel.app/)]
 
 ## 🛠️ Technical Implementation
 
@@ -28,3 +28,7 @@ A clean, modern, and highly accessible Todo Item Card built with **Vanilla HTML5
 ├── style.css    # Responsive layouts and custom styling
 ├── script.js    # Logic for countdown, toggle, and pluralization
 └── README.md    # Project documentation
+
+**screenshot:**
+`![Project Screenshot](<img width="391" height="242" alt="image" src="https://github.com/user-attachments/assets/02385ea7-747a-4205-942a-db19efed0be7" />
+)`
