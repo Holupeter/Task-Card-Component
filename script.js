@@ -18,7 +18,7 @@ function updateDisplay() {
     const now = new Date();
     const diffInMs = dueDate - now;
     
-    // --- Update the Due Date with TIME (e.g., Due Apr 12, 2026, 1:00 PM) ---
+    // Update the Due Date with TIME (e.g., Due Apr 12, 2026, 1:00 PM) 
     const dateOptions = { 
         month: 'short', 
         day: 'numeric', 
@@ -35,7 +35,7 @@ function updateDisplay() {
     // Semantic datetime attribute for machines
     dueDateElement.setAttribute('datetime', dueDate.toISOString());
 
-    // --- Update the "Time Remaining" logic ---
+    // Update the "Time Remaining" logic 
     const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
     const diffInDays = Math.floor(diffInHours / 24);
 
@@ -64,11 +64,11 @@ todoToggle.addEventListener('change', () => {
     if (todoToggle.checked) {
         taskTitle.classList.add('completed-text');
         statusBar.innerText = "Done";
-        statusBar.style.background = "#55efc4"; 
+        statusBar.style.background = "#10b981"; // Sage Green
     } else {
         taskTitle.classList.remove('completed-text');
         statusBar.innerText = "Pending";
-        statusBar.style.background = "#6c5ce7"; 
+        statusBar.style.background = "#0f172a"; // Deep Slate
     }
 });
 

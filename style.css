@@ -1,14 +1,15 @@
-/* 1. The Designer's Palette & Reset */
+/* My Palette */
 :root {
-    --bg-color: #f8f9fa;
+    --bg-color: #f0f2f5;       
     --card-bg: #ffffff;
-    --text-main: #2d3436;
-    --text-muted: #636e72;
-    --accent: #6c5ce7;
-    --danger: #ff7675;
-    --low-priority: #55efc4;
-    --border-radius: 16px;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --text-main: #1e293b;      
+    --text-muted: #64748b;     
+    --accent: #0f172a;         
+    --success: #10b981;        
+    --danger: #ef4444;
+    --low-priority: #f1f5f9;   
+    --border-radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -28,7 +29,7 @@ body {
     padding: 20px;
 }
 
-/* 2. The Card Container (Responsiveness) */
+/* The Card Container (Responsiveness) */
 .todo-card {
     background: var(--card-bg);
     width: 100%;
@@ -41,7 +42,7 @@ body {
     transition: transform 0.2s ease;
 }
 
-/* 3. Header & Checkbox Styling */
+/* Header & Checkbox Styling */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -60,7 +61,7 @@ body {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: var(--accent);
+    accent-color: var(--success); 
 }
 
 #task-title {
@@ -76,7 +77,7 @@ body {
     opacity: 0.6;
 }
 
-/* 4. Badges & Tags */
+/* Badges & Tags */
 .priority-badge {
     font-size: 0.7rem;
     text-transform: uppercase;
@@ -86,12 +87,15 @@ body {
     font-weight: 700;
     background: #e1fdf4;
     color: #00b894;
+    background: var(--low-priority);
+    color: var(--text-main);
+    border: 1px solid #e2e8f0;
 }
 
 .tag-list {
     list-style: none;
     display: flex;
-    flex-wrap: wrap; /* Requirement: Tags should wrap nicely */
+    flex-wrap: wrap; 
     gap: 8px;
     margin-top: 16px;
 }
@@ -104,7 +108,7 @@ body {
     color: var(--text-muted);
 }
 
-/* 5. Footer & Actions */
+/* Footer & Actions */
 .card-footer {
     margin-top: 24px;
     padding-top: 16px;
@@ -127,7 +131,7 @@ time {
 
 #time-remaining {
     font-weight: 600;
-    color: var(--accent);
+    color: var(--text-main);
 }
 
 .btn-icon {
@@ -154,15 +158,18 @@ time {
     color: var(--danger);
 }
 
-/* 6. Status Bar */
+/* Status Bar */
 .status-bar {
     position: absolute;
     top: 0;
     right: 24px;
     transform: translateY(-50%);
-    background: var(--accent);
+    background: var(--accent); 
     color: white;
-    padding: 2px 12px;
+    padding: 4px 14px;
     font-size: 0.7rem;
-    border-radius: 4px;
+    font-weight: 600;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
