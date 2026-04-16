@@ -1,30 +1,46 @@
-# Task Card component
+# Task Card component Updated: Stateful & Interactive
 
-A clean, modern, and highly accessible Todo Item Card built with **Vanilla HTML5, CSS3, and JavaScript**. This project focuses on semantic structure, automated testability, and a human-centric design aesthetic.
+A clean, modern, and highly accessible Todo Item Card built with **Vanilla HTML5, CSS3, and JavaScript**. This version represents an evolution from the previous stage, transforming a static display into a fully interactive, stateful component that emphasizes source-of-truth data management and synchronized UI controls.
 
 ## 🚀 Live Demo
-[Insert Your Vercel/Netlify URL Here]
+[Insert Your Live URL Here]
 
-## 🛠️ Technical Implementation
+## 🔄 What Changed from Previous Stage?
+- **State-Driven Architecture**: Transitioned from direct DOM manipulation to a centralized `state` object. The UI now reflects a single source of truth, making data updates predictable and robust.
+- **Edit Mode**: Implemented a full CRUD-lite experience where users can modify the title, description, priority, and due date in a seamless, inline form.
+- **Enhanced Time Logic**: Upgraded the countdown to support granular minutes and hours, alongside a persistent "Completed" state and a dedicated Overdue indicator.
+- **Status Synchronization**: Created a 3-way sync between the completion checkbox, the status dropdown, and the visual card styling.
 
-### 1. Testability & Precision
-- **Exact Data-TestIDs:** Implemented all required `data-testid` attributes (e.g., `test-todo-card`, `test-todo-complete-toggle`) to ensure 100% compatibility with automated grading scripts.
-- **Dynamic Logic:** The due date and countdown timer are calculated dynamically using JavaScript to ensure the "Time Remaining" logic is always relevant and accurate upon page load.
-- **Pluralization Logic:** Includes custom logic to handle singular/plural time units (e.g., "1 day" vs "2 days") for a polished UI.
+## 🛠️ Technical Implementation & Design
 
-### 2. Semantic HTML & Accessibility (A11y)
-- **Structure:** Built using semantic tags including `<article>`, `<time>`, `<ul>`, and `<button>`.
-- **Screen Reader Support:** Includes `aria-label` for icon-only buttons and `aria-live="polite"` for the dynamic countdown timer to ensure updates are announced to assistive technologies.
-- **Keyboard Navigation:** Fully navigable via `Tab` key with clear visual focus states for all interactive elements.
+### 1. Precision & Testability
+- **Exact Data-TestIDs**: Implemented all required attributes (e.g., `test-todo-edit-form`, `test-todo-priority-indicator`) to ensure 100% compatibility with automated grading scripts and E2E testing.
+- **Senior-Level Logic**: Includes professional logic for dynamic time pluralization ("1 day" vs "2 days") and a "Delete" confirmation prompt to prevent accidental data loss.
 
-### 3. Responsive "Human" Design
-- **Aesthetic:** A "Soft-Minimalist" approach using a neutral color palette, subtle shadows, and a modular scale.
-- **Responsiveness:** Fluid layout that scales gracefully from **320px to 1200px**, ensuring no horizontal overflow or layout shifts on mobile, tablet, or desktop devices.
-- **Zero-Dependency:** No external libraries or frameworks (like Font Awesome or Bootstrap) were used—only native Web APIs and Unicode symbols for maximum performance.
+### 2. Design Decisions & Visual Cues
+- **Tiered Layout**: To maintain a professional aesthetic, status controls and management actions are logically grouped to optimize space and vertical rhythm.
+- **Visual Status Tints**:
+    - **In Progress**: Uses a blue left-border accent and subtle background tint to signal active work.
+    - **High Priority**: Features a red top-border and a glowing "pill" indicator to create urgency.
+    - **Done State**: Intelligently mutes the card opacity and applies a strikethrough to completed tasks.
+- **Collapsible Content**: Long descriptions are automatically truncated with a subtle gradient fade and a keyboard-accessible "Show More" toggle.
+
+### 3. Advanced Accessibility (A11y)
+- **Focus Management**: We prioritize user context. Changing modes returns focus to the triggering element to prevent "focus loss."
+- **Semantic HTML**: Built using specialized tags like `<article>`, `<time>`, and `<select>` with explicitly linked `<label>` elements.
+- **Live Regions**: The dynamic countdown timer utilizes `aria-live="polite"` to ensure time-sensitive updates are announced to assistive technologies without interruption.
 
 ## 📂 Project Structure
 ```text
-├── index.html   # Semantic structure and ARIA labels
-├── style.css    # Responsive layouts and custom styling
-├── script.js    # Logic for countdown, toggle, and pluralization
-└── README.md    # Project documentation
+├── index.html   # Semantic structure and ARIA/TestID implementation
+├── style.css    # Responsive design system and visual state cues
+├── script.js    # State management, sync logic, and time calculations
+└── README.md    # Project documentation and evolution notes
+```
+
+## 📋 Features Checklist
+- [x] Functional Expand/Collapse for long descriptions.
+- [x] Seamless status transitions (Pending ↔ In Progress ↔ Done).
+- [x] Responsive layout adapting to **320px**, **768px**, and **1024px**.
+- [x] Granular time-remaining logic (minutes, hours, days).
+- [x] Interactive dummy delete confirmation.
