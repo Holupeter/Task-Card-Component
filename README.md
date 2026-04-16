@@ -3,7 +3,7 @@
 A clean, modern, and highly accessible Todo Item Card built with **Vanilla HTML5, CSS3, and JavaScript**. This version represents an evolution from the previous stage, transforming a static display into a fully interactive, stateful component that emphasizes source-of-truth data management and synchronized UI controls.
 
 ## 🚀 Live Demo
-[Insert Your Live URL Here]
+[Live Link](https://task-card-component.vercel.app/)
 
 ## 🔄 What Changed from Previous Stage?
 - **State-Driven Architecture**: Transitioned from direct DOM manipulation to a centralized `state` object. The UI now reflects a single source of truth, making data updates predictable and robust.
