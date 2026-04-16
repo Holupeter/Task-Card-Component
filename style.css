@@ -1,15 +1,21 @@
 /* My Palette */
 :root {
-    --bg-color: #f0f2f5;       
+    --bg-color: #f0f2f5;
     --card-bg: #ffffff;
-    --text-main: #1e293b;      
-    --text-muted: #64748b;     
-    --accent: #0f172a;         
-    --success: #10b981;        
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --accent: #0f172a;
+    --success: #10b981;
     --danger: #ef4444;
     --warning: #f59e0b;
     --info: #3b82f6;
-    --low-priority: #f1f5f9;   
+    --low-priority: #f1f5f9;
+    --priority-high-bg: #fee2e2;
+    --priority-high-text: #b91c1c;
+    --priority-medium-bg: #fef3c7;
+    --priority-medium-text: #b45309;
+    --priority-low-bg: #dcfce7;
+    --priority-low-text: #15803d;
     --border-radius: 12px;
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
@@ -35,11 +41,12 @@ body {
 .todo-card {
     background: var(--card-bg);
     width: 100%;
-    max-width: 480px; /* Slightly wider for Stage 1 form fields */
+    max-width: 480px;
+    /* Slightly wider for Stage 1 form fields */
     padding: 24px;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border: 1px solid rgba(0,0,0,0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
     position: relative;
     transition: all 0.3s ease;
 }
@@ -57,39 +64,146 @@ body {
 
 /* Collapsible Description */
 #collapsible-section {
-    transition: max-height 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .collapsed {
-    max-height: 3.6em; /* Roughly 2 lines of text */
-    overflow: hidden;
+    max-height: 4.5em;
+    /* 3 lines of text */
+}
+
+/* Subtle fade effect when collapsed */
+.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(transparent, var(--card-bg));
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+#task-description {
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    margin-bottom: 8px;
 }
 
 #expand-toggle {
-    background: none;
-    border: none;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
     color: var(--info);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 700;
     cursor: pointer;
-    padding: 4px 0;
-    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-top: 4px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+#expand-toggle:hover {
+    background: #e2e8f0;
+    color: #2563eb;
+}
+
+#expand-toggle::after {
+    content: '↓';
+    /* Chevron-like symbol */
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+#expand-toggle[aria-expanded="true"]::after {
+    transform: rotate(180deg);
 }
 
 /* Priority Indicators */
-.priority-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 4px;
+.priority-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
 }
 
-.priority-high-dot { background-color: var(--danger); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
-.priority-medium-dot { background-color: var(--warning); }
-.priority-low-dot { background-color: var(--success); }
+.priority-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
 
-/* Header & Form Elements */
+.priority-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Priority State: High */
+.priority-high {
+    background-color: var(--priority-high-bg);
+    border-color: rgba(239, 68, 68, 0.1);
+}
+
+.priority-high .dot-high {
+    background-color: var(--danger);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
+
+.priority-high .badge-high {
+    color: var(--priority-high-text);
+}
+
+/* Priority State: Medium */
+.priority-medium {
+    background-color: var(--priority-medium-bg);
+    border-color: rgba(245, 158, 11, 0.1);
+}
+
+.priority-medium .dot-medium {
+    background-color: var(--warning);
+}
+
+.priority-medium .badge-medium {
+    color: var(--priority-medium-text);
+}
+
+/* Priority State: Low */
+.priority-low {
+    background-color: var(--priority-low-bg);
+    border-color: rgba(16, 185, 129, 0.1);
+}
+
+.priority-low .dot-low {
+    background-color: var(--success);
+}
+
+.priority-low .badge-low {
+    color: var(--priority-low-text);
+}
+
+/* Hover effect for a premium feel */
+.priority-wrapper:hover .priority-dot {
+    transform: scale(1.2);
+}
+
+/* Header & Layout */
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -107,7 +221,7 @@ body {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: var(--success); 
+    accent-color: var(--success);
 }
 
 #task-title {
@@ -121,7 +235,7 @@ body {
     top: 0;
     right: 24px;
     transform: translateY(-50%);
-    background: var(--accent); 
+    background: var(--accent);
     color: white;
     padding: 4px 14px;
     font-size: 0.7rem;
@@ -160,18 +274,46 @@ body {
     color: var(--text-muted);
 }
 
-.form-group input, .form-group textarea, .form-group select {
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    max-width: 100%;
     padding: 10px;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     font-family: inherit;
     font-size: 0.9rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    /* Prevents breaking card width */
+    line-height: 1.5;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--info);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    background-color: #fcfdfe;
+    /* Subtle highlight on focus */
 }
 
 .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.form-row .form-group {
+    flex: 1 1 200px;
+    /* Stacks when container is less than ~400px wide */
 }
 
 .form-actions {
@@ -204,7 +346,7 @@ body {
 .card-footer {
     margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px dashed #dfe6e9; /* Stage 0 feel */
+    border-top: 1px dashed #dfe6e9;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -215,6 +357,23 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tag-list li {
+    font-size: 0.75rem;
+    background: #f1f2f6;
+    padding: 4px 12px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
 .status-control-group {
@@ -235,13 +394,27 @@ body {
 
 /* Distinct style for In Progress */
 .status-in-progress-card {
-    border-left: 6px solid var(--info) !important;
-    background-color: #f8fafc; /* Very subtle blue tint */
+    border-left: 4px solid var(--info) !important;
+    background-color: #f0f9ff !important;
 }
 
-/* High Priority border accent */
+/* High Priority visual enhancements */
 .priority-high-card {
     border-top: 4px solid var(--danger);
+    /* Subtle red tint at the top for professional highlight */
+    background: linear-gradient(to bottom, #fff5f5, #ffffff 150px);
+}
+
+/* Done State styling */
+.todo-card:has(.completed-text) {
+    background-color: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+.todo-card:has(.completed-text) .card-body,
+.todo-card:has(.completed-text) .tag-list,
+.todo-card:has(.completed-text) .date-info {
+    opacity: 0.7;
 }
 
 .date-info {
@@ -261,14 +434,14 @@ body {
 /* Controls Row (Status + Actions) */
 .controls-group {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
     width: 100%;
 }
 
 .actions {
     display: flex;
-    gap: 8px; 
+    gap: 8px;
 }
 
 .btn-icon {
@@ -291,8 +464,45 @@ body {
     background: #fee2e2;
 }
 
-/* Responsive Tweaks */
-@media (max-width: 480px) {
-    .form-row { grid-template-columns: 1fr; }
-    .footer-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+/* Responsive Design (Yardstick: 320px, 768px, 1024px+) */
+
+/* Mobile & Tablet Small (Below 768px) */
+@media (max-width: 767px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Tablet / Desktop (768px+) */
+@media (min-width: 768px) {
+    .todo-card {
+        padding: 32px;
+        /* Slightly more spacious on larger screens */
+    }
+}
+
+/* Wide Desktop (1024px+) */
+@media (min-width: 1024px) {
+
+    /* "Priority & status may align horizontally" */
+    .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+}
+
+/* Safety for long content per guide */
+#task-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.tag-list {
+    flex-wrap: wrap;
 }
