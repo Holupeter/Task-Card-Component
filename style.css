@@ -202,12 +202,12 @@ body {
 
 /* Footer & Controls */
 .card-footer {
-    margin-top: 24px;
+    margin-top: 20px;
     padding-top: 16px;
-    border-top: 1px dashed #dfe6e9;
+    border-top: 1px dashed #dfe6e9; /* Stage 0 feel */
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .footer-top {
@@ -224,10 +224,13 @@ body {
 }
 
 #status-control {
-    padding: 4px 8px;
+    padding: 6px 10px;
     border-radius: 6px;
     border: 1px solid #e2e8f0;
     font-size: 0.8rem;
+    background-color: white;
+    cursor: pointer;
+    font-family: inherit;
 }
 
 /* Distinct style for In Progress */
@@ -239,6 +242,53 @@ body {
 /* High Priority border accent */
 .priority-high-card {
     border-top: 4px solid var(--danger);
+}
+
+.date-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.time-status-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Controls Row (Status + Actions) */
+.controls-group {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    gap: 8px; 
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: var(--text-muted);
+    transition: all 0.2s;
+}
+
+.btn-icon:hover {
+    background: #f1f2f6;
+}
+
+.btn-icon.delete:hover {
+    color: var(--danger);
+    background: #fee2e2;
 }
 
 /* Responsive Tweaks */

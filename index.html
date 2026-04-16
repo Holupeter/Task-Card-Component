@@ -38,27 +38,27 @@
                 </div>
 
                 <footer class="card-footer">
-                    <div class="date-info">
-                        <time data-testid="test-todo-due-date">Due Apr 12, 2026</time>
-                        <div class="time-status-group">
-                            <time id="time-remaining" data-testid="test-todo-time-remaining" aria-live="polite">Due in 1 day</time>
-                            <span id="overdue-indicator" data-testid="test-todo-overdue-indicator" class="hidden">OVERDUE</span>
-                        </div>
-                    </div>
-                    
-                    <div class="controls-group">
-                        <select id="status-control" data-testid="test-todo-status-control" aria-label="Change status">
-                            <option value="Pending">Pending</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Done">Done</option>
-                        </select>
+    <div class="date-info">
+        <time data-testid="test-todo-due-date">Due Apr 12, 2026</time>
+        <div class="time-status-group">
+            <time id="time-remaining" data-testid="test-todo-time-remaining" aria-live="polite">Due in 1 day</time>
+            <span id="overdue-indicator" data-testid="test-todo-overdue-indicator" class="hidden">OVERDUE</span>
+        </div>
+    </div>
+    
+    <div class="controls-group">
+        <select id="status-control" data-testid="test-todo-status-control" aria-label="Change status">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+        </select>
 
-                        <div class="actions">
-                            <button class="btn-icon" id="edit-btn" data-testid="test-todo-edit-button" aria-label="Edit Task">&#9998;</button>
-                            <button class="btn-icon delete" data-testid="test-todo-delete-button" aria-label="Delete Task">&#128465;</button>
-                        </div>
-                    </div>
-                </footer>
+        <div class="actions">
+            <button class="btn-icon" id="edit-btn" data-testid="test-todo-edit-button" aria-label="Edit Task">&#9998;</button>
+            <button class="btn-icon delete" id="delete-btn" data-testid="test-todo-delete-button" aria-label="Delete Task">&#128465;</button>
+        </div>
+    </div>
+</footer>
                 <div class="status-bar" data-testid="test-todo-status">Pending</div>
             </div>
 
