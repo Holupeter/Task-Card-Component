@@ -42,6 +42,22 @@ const cancelBtn = document.getElementById('cancel-btn');
  UI UPDATE
  */
 function updateUI() {
+    const card = document.querySelector('.todo-card');
+    
+    // 1. Handle "In Progress" Visual Style
+    if (state.status === "In Progress") {
+        card.classList.add('status-in-progress-card');
+    } else {
+        card.classList.remove('status-in-progress-card');
+    }
+
+    // 2. Handle "High Priority" Visual Style
+    if (state.priority === "High") {
+        card.classList.add('priority-high-card');
+    } else {
+        card.classList.remove('priority-high-card');
+    }
+    
     // Basic Content
     taskTitle.innerText = state.title;
     taskDescription.innerText = state.description;

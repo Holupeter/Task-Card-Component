@@ -230,6 +230,17 @@ body {
     font-size: 0.8rem;
 }
 
+/* Distinct style for In Progress */
+.status-in-progress-card {
+    border-left: 6px solid var(--info) !important;
+    background-color: #f8fafc; /* Very subtle blue tint */
+}
+
+/* High Priority border accent */
+.priority-high-card {
+    border-top: 4px solid var(--danger);
+}
+
 /* Responsive Tweaks */
 @media (max-width: 480px) {
     .form-row { grid-template-columns: 1fr; }
